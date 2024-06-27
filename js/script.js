@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', ()=> {
     const videosList = [
         {
             video: 'videos/1.mp4',
@@ -63,8 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
         desc1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         desc2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
      }];
-    
- 
     const mainVideo = document.querySelector('.main-video-container .main-video');
     const mainTitle = document.querySelector('.main-video-container .main-vid-title');
     const mainDesc1 = document.querySelector('.main-video-container .desc1');
@@ -82,8 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
     videoListContainer.innerHTML = html;
 }
-
-
     function attachEventListeners(videoElement) {
         videoElement.addEventListener('canplay', () => {
             console.log('Main video can start playing');
@@ -101,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error occurred: ', e);
         });
 
-        videoElement.addEventListener('progress', () => {
+        videoElement.addEventListener('progress', ()=> {
             if (videoElement.buffered.length > 0) {
                 const bufferedEnd = videoElement.buffered.end(videoElement.buffered.length - 1);
                 const duration = videoElement.duration;
@@ -109,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
     function updateMainVideo(src, title, desc1, desc2) {
         mainVideo.src = src;
         mainVideo.play();
@@ -117,14 +112,13 @@ document.addEventListener('DOMContentLoaded', () => {
         mainDesc1.innerHTML = desc1;
         mainDesc2.innerHTML = desc2;
     }
-
     function initializeVideoList() {
         videoListContainer.innerHTML = renderVideoList(videosList);
 
         const videoItems = document.querySelectorAll('.video-list-container .list');
 
         videoItems.forEach((vid, index) => {
-            vid.addEventListener('click', () => {
+            vid.addEventListener('click', ()=> {
                 videoItems.forEach(item => item.classList.remove('active'));
                 vid.classList.add('active');
                 
@@ -136,13 +130,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateMainVideo(src, title, desc1, desc2);
                 attachEventListeners(mainVideo);
             });
-
-       
             if (index === 0) {
                 vid.click();
             }
         });
     }
-
     initializeVideoList();
 });
